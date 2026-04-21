@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { FiSearch, FiFilter, FiBriefcase, FiMapPin, FiClock, FiCheckCircle } from 'react-icons/fi';
+import { useState, useEffect } from 'react';
+import { FiSearch, FiBriefcase, FiMapPin, FiClock, FiCheckCircle } from 'react-icons/fi';
 import { FaRupeeSign } from 'react-icons/fa';
 import { motion, AnimatePresence } from 'framer-motion';
 import axios from '../../api/axios';

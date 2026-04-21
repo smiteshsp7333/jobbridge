@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { FiClock, FiMapPin, FiBriefcase, FiArrowRight } from 'react-icons/fi';
 import { useAuth } from '../../context/AuthContext';
 import JobModal, { type JobDetails } from '../../components/JobModal';

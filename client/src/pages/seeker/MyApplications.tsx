@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { FiBriefcase, FiClock, FiCheckCircle, FiXCircle, FiAlertCircle, FiMoreVertical, FiMapPin, FiDollarSign, FiSearch, FiFilter } from 'react-icons/fi';
+import { useState } from 'react';
+import { FiBriefcase, FiClock, FiCheckCircle, FiXCircle, FiAlertCircle, FiMoreVertical, FiMapPin, FiSearch } from 'react-icons/fi';
 import { FaRupeeSign } from 'react-icons/fa';
 import JobModal, { type JobDetails } from '../../components/JobModal';
 

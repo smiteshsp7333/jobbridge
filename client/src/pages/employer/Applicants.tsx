@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from '../../api/axios';
 import { useAuth } from '../../context/AuthContext';
-import { FiFileText, FiMail, FiCheckSquare, FiSquare, FiChevronDown, FiSend, FiCheck, FiX, FiAlertCircle, FiLoader } from 'react-icons/fi';
+import { FiFileText, FiMail, FiChevronDown, FiSend, FiCheck, FiX, FiAlertCircle, FiLoader } from 'react-icons/fi';
 import ResumePreviewModal from '../../components/ResumePreviewModal';
 
 const STATUS_OPTIONS = ['Pending', 'Under Review', 'Shortlisted', 'Accepted', 'Rejected'];

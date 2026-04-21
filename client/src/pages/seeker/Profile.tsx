@@ -1,5 +1,5 @@
-import React, { useState, useRef } from 'react';
-import { FiEdit2, FiPlus, FiTrash2, FiStar, FiUploadCloud, FiFileText, FiLink, FiCheck, FiX, FiCheckCircle } from 'react-icons/fi';
+import { useState, useRef } from 'react';
+import { FiEdit2, FiPlus, FiTrash2, FiStar, FiUploadCloud, FiFileText, FiLink, FiX } from 'react-icons/fi';
 import { useAuth } from '../../context/AuthContext';
 import { motion, AnimatePresence } from 'framer-motion';
 

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Bar, Pie } from 'react-chartjs-2';
 import {
   Chart as ChartJS,
@@ -12,7 +12,7 @@ import {
 } from 'chart.js';
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, ArcElement);
-import { FiBriefcase, FiFileText, FiUserCheck, FiCheckCircle, FiArrowRight } from 'react-icons/fi';
+import { FiBriefcase, FiFileText, FiUserCheck, FiCheckCircle } from 'react-icons/fi';
 import axios from '../../api/axios';
 import { useAuth } from '../../context/AuthContext';
 import PostJobModal from '../../components/PostJobModal';
@@ -91,7 +91,7 @@ const EmployerDashboard = () => {
   // Applications per job (bar chart)
   const jobTitles = data.jobs.map((job: any) => job.title);
   const applicationsPerJob = jobTitles.map(
-    (title: string, idx: number) =>
+    (title: string) =>
       data.applications.filter((app: any) => app.jobId?.title === title).length
   );
 

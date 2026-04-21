@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { FiMapPin, FiClock, FiBookmark, FiBriefcase, FiCornerRightUp, FiMoreHorizontal } from 'react-icons/fi';
+import { useState } from 'react';
+import { FiMapPin, FiBookmark, FiBriefcase, FiCornerRightUp, FiMoreHorizontal } from 'react-icons/fi';
 import { FaRupeeSign } from 'react-icons/fa';
 import JobModal, { type JobDetails } from '../../components/JobModal';
 
@@ -16,8 +16,7 @@ const Bookmarks = () => {
             location: 'Bangalore (Remote)',
             type: 'Full-time',
             salary: '₹18L - ₹24L',
-            posted: '2 days ago',
-            match: 94
+            posted: '2 days ago'
         },
         {
             id: 2,
@@ -27,8 +26,7 @@ const Bookmarks = () => {
             location: 'Gurgaon, Haryana',
             type: 'Full-time',
             salary: '₹14L - ₹20L',
-            posted: '5 days ago',
-            match: 88
+            posted: '5 days ago'
         },
         {
             id: 3,
@@ -38,8 +36,7 @@ const Bookmarks = () => {
             location: 'Pune, Maharashtra',
             type: 'Contract',
             salary: '₹10L - ₹15L',
-            posted: '1 week ago',
-            match: 82
+            posted: '1 week ago'
         },
         {
             id: 4,
@@ -49,12 +46,11 @@ const Bookmarks = () => {
             location: 'Mumbai (Hybrid)',
             type: 'Full-time',
             salary: '₹12L - ₹18L',
-            posted: '3 days ago',
-            match: 75
+            posted: '3 days ago'
         }
     ]);
 
-    const removeBookmark = (id: number) => {
+    const removeBookmark = (id: string | number) => {
         setBookmarks(bookmarks.filter(b => b.id !== id));
     };
 
@@ -124,10 +120,6 @@ const Bookmarks = () => {
                                     <div>
                                         <p className="text-[#a0a0a0] text-xs mb-0.5">Salary Match</p>
                                         <p className="text-white font-bold flex items-center gap-1"><FaRupeeSign className="text-[#a0a0a0]" size={12}/>{job.salary}</p>
-                                    </div>
-                                    <div className="text-right">
-                                        <p className="text-[#a0a0a0] text-xs mb-0.5">Match Score</p>
-                                        <p className="text-[#c5f135] font-bold">{job.match}%</p>
                                     </div>
                                 </div>
 

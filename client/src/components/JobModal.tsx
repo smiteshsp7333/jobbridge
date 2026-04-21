@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FiX, FiBriefcase, FiMapPin, FiClock, FiDollarSign, FiCheckCircle } from 'react-icons/fi';
+import { FiX, FiBriefcase, FiMapPin, FiClock, FiCheckCircle } from 'react-icons/fi';
 import { FaRupeeSign } from 'react-icons/fa';
 import { useAuth } from '../context/AuthContext';
 import axios from '../api/axios';

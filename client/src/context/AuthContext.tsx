@@ -1,4 +1,5 @@
-import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import React, { createContext, useContext, useState, useEffect } from 'react';
+import type { ReactNode } from 'react';
 import { jwtDecode } from 'jwt-decode';
 import axios from '../api/axios';
 
@@ -9,6 +10,9 @@ export interface User {
   role: 'seeker' | 'employer';
   profileComplete?: number;
   companyName?: string;
+  profilePhoto?: string;
+  skills?: string[];
+  resumes?: any[];
   // other fields can expand...
 }
 
