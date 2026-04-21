@@ -3,28 +3,26 @@ import { Outlet, Link, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { FiHome, FiBriefcase, FiUser, FiFileText, FiBookmark, FiFile, FiUsers, FiBell, FiLogOut, FiMail, FiSettings } from 'react-icons/fi';
 import { useSocket } from '../context/useSocket';
+import { useToast } from '../context/ToastContext';
 
 const DashboardLayout = () => {
   const { user, logout } = useAuth();
   const location = useLocation();
   const [notifications, setNotifications] = useState<{ id: number; text: string; time: string }[]>([]);
   const [showNotif, setShowNotif] = useState(false);
+  const { showToast } = useToast();
 
   // F8 – Real-time Socket.io notifications
   useSocket((event, data) => {
     if (event === 'new_application') {
-      setNotifications(prev => [{
-        id: Date.now(),
-        text: `New application for "${data.jobTitle}" from ${data.userEmail}`,
-        time: new Date().toLocaleTimeString(),
-      }, ...prev].slice(0, 20));
+      const msg = `New application for "${data.jobTitle}" from ${data.userEmail}`;
+      setNotifications(prev => [{ id: Date.now(), text: msg, time: new Date().toLocaleTimeString() }, ...prev].slice(0, 20));
+      showToast(msg, 'info');
     }
     if (event === 'status_changed') {
-      setNotifications(prev => [{
-        id: Date.now(),
-        text: `Application status updated to "${data.status}"`,
-        time: new Date().toLocaleTimeString(),
-      }, ...prev].slice(0, 20));
+      const msg = `Application status updated to "${data.status}"`;
+      setNotifications(prev => [{ id: Date.now(), text: msg, time: new Date().toLocaleTimeString() }, ...prev].slice(0, 20));
+      showToast(msg, 'success');
     }
   });
 

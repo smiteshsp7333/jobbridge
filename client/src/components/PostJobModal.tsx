@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from '../api/axios';
 import { useAuth } from '../context/AuthContext';
+import { useToast } from '../context/ToastContext';
 import { FiX } from 'react-icons/fi';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -12,6 +13,7 @@ interface PostJobModalProps {
 
 const PostJobModal: React.FC<PostJobModalProps> = ({ isOpen, onClose, onJobPosted }) => {
   const { user } = useAuth();
+  const { showToast } = useToast();
   const [formData, setFormData] = useState({
     title: '',
     location: '',
@@ -48,6 +50,7 @@ const PostJobModal: React.FC<PostJobModalProps> = ({ isOpen, onClose, onJobPoste
         status: isDraft ? 'Draft' : 'Open',
       });
 
+      showToast(`Job ${isDraft ? 'saved as draft' : 'published'} successfully`, 'success');
       onJobPosted();
       onClose();
       // Reset form
@@ -56,7 +59,7 @@ const PostJobModal: React.FC<PostJobModalProps> = ({ isOpen, onClose, onJobPoste
       });
     } catch (error) {
       console.error('Error posting job:', error);
-      alert('Failed to post job. Please try again.');
+      showToast('Failed to post job. Please try again.', 'error');
     } finally {
       setIsSubmitting(false);
     }

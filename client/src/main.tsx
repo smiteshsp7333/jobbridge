@@ -20,11 +20,13 @@ const Applicants = lazy(() => import('./pages/employer/Applicants'));
 const EmployerProfile = lazy(() => import('./pages/employer/EmployerProfile'));
 const EmailTemplates = lazy(() => import('./pages/employer/EmailTemplates'));
 import { AuthProvider } from './context/AuthContext'
+import { ToastProvider } from './context/ToastContext'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
       <BrowserRouter>
         <AuthProvider>
+          <ToastProvider>
           <Routes>
             <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
@@ -111,7 +113,8 @@ createRoot(document.getElementById('root')!).render(
 
           <Route path="/" element={<Navigate to="/login" replace />} />
         </Routes>
-      </AuthProvider>
+          </ToastProvider>
+        </AuthProvider>
       </BrowserRouter>
   </StrictMode>,
 )
