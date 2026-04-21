@@ -16,7 +16,6 @@ const io = new Server(server, {
   cors: { origin: '*', methods: ['GET', 'POST'] },
 });
 
-// Attach io to app so routes can access it via req.app.get('io')
 app.set('io', io);
 
 io.on('connection', (socket) => {
@@ -25,7 +24,10 @@ io.on('connection', (socket) => {
 });
 
 // Middleware
-app.use(cors({ origin: '*', credentials: true }));
+app.use(cors({
+  origin: process.env.CORS_ORIGIN || '*',
+  credentials: true
+}));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
