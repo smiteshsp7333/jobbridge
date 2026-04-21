@@ -111,16 +111,21 @@ router.post('/apply', async (req, res) => {
       `,
     };
 
-    console.log(`Sending application confirmation email to ${userEmail} for ${jobTitle} at ${companyName}`);
-    await transporter.sendMail(mailOptions);
-
-    // Real-time: notify targeted employer of new application
+    // Real-time: notify targeted employer of new application IMMEDIATELY
     try {
       const io = getIo(req);
       if (io) io.to(`employer_${employerId}`).emit('new_application', { jobTitle, companyName, userEmail });
     } catch (_) {}
 
-    res.status(200).json({ message: 'Application submitted and email sent successfully.' });
+    // Send email (wrapped in try/catch so local missing .env vars won't break the apply flow)
+    try {
+      console.log(`Sending application confirmation email to ${userEmail} for ${jobTitle} at ${companyName}`);
+      await transporter.sendMail(mailOptions);
+    } catch (emailErr) {
+      console.log('Email sending skipped/failed (check .env credentials):', emailErr.message);
+    }
+
+    res.status(200).json({ message: 'Application submitted successfully.' });
   } catch (error) {
     console.error('Apply/Email error:', error);
     // If duplicate error
