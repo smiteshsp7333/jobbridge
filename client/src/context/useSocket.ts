@@ -4,7 +4,7 @@ import { io, Socket } from 'socket.io-client';
 const SOCKET_URL = import.meta.env.VITE_SOCKET_URL || 'http://localhost:5000';
 let globalSocket: Socket | null = null;
 
-export const useSocket = (onEvent: (event: string, data: any) => void) => {
+export const useSocket = (onEvent: (event: string, data: any) => void, userId?: string) => {
   const handlerRef = useRef(onEvent);
   handlerRef.current = onEvent;
 
@@ -13,6 +13,10 @@ export const useSocket = (onEvent: (event: string, data: any) => void) => {
       globalSocket = io(SOCKET_URL, { transports: ['websocket'] });
     }
     const socket = globalSocket;
+    
+    if (userId) {
+      socket.emit('join_employer', userId);
+    }
 
     const handleNewApp = (data: any) => handlerRef.current('new_application', data);
     const handleStatusChange = (data: any) => handlerRef.current('status_changed', data);
@@ -24,7 +28,7 @@ export const useSocket = (onEvent: (event: string, data: any) => void) => {
       socket.off('new_application', handleNewApp);
       socket.off('status_changed', handleStatusChange);
     };
-  }, []);
+  }, [userId]);
 };
 
 export default useSocket;

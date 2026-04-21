@@ -20,6 +20,13 @@ app.set('io', io);
 
 io.on('connection', (socket) => {
   console.log(`Socket connected: ${socket.id}`);
+  
+  // Clean room joining for targeted notifications
+  socket.on('join_employer', (employerId) => {
+    socket.join(`employer_${employerId}`);
+    console.log(`Socket joined employer room: ${employerId}`);
+  });
+
   socket.on('disconnect', () => console.log(`Socket disconnected: ${socket.id}`));
 });
 

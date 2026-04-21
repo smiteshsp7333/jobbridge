@@ -24,7 +24,7 @@ const DashboardLayout = () => {
       setNotifications(prev => [{ id: Date.now(), text: msg, time: new Date().toLocaleTimeString() }, ...prev].slice(0, 20));
       showToast(msg, 'success');
     }
-  });
+  }, user?._id);
 
   const isSeeker = user?.role === 'seeker';
 

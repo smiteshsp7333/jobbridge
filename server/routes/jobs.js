@@ -114,10 +114,10 @@ router.post('/apply', async (req, res) => {
     console.log(`Sending application confirmation email to ${userEmail} for ${jobTitle} at ${companyName}`);
     await transporter.sendMail(mailOptions);
 
-    // Real-time: notify employer of new application
+    // Real-time: notify targeted employer of new application
     try {
       const io = getIo(req);
-      if (io) io.emit('new_application', { jobTitle, companyName, userEmail });
+      if (io) io.to(`employer_${employerId}`).emit('new_application', { jobTitle, companyName, userEmail });
     } catch (_) {}
 
     res.status(200).json({ message: 'Application submitted and email sent successfully.' });
